@@ -1,0 +1,209 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(-45deg, #FFF0F5, #FFE4E1, #FFD6E8, #FFC0CB);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow:
+        0 8px 32px rgba(255, 107, 157, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    background: linear-gradient(135deg, #E91E63, #FF6B9D);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    animation: fadeIn 0.4s ease 0.4s both;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    animation: fadeIn 0.5s ease 0.6s both;
+}
+
+.yes-button {
+    font-size: 1.5em;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, #FF6B9D, #FF8EBA);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+.yes-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.yes-button:hover::before {
+    left: 100%;
+}
+
+.yes-button:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255, 107, 157, 0.6);
+}
+
+.no-button {
+    font-size: 1.5em;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, #FFB6C1, #FFC0CB);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 600;
+}
+
+.no-button:hover {
+    transform: scale(1.02);
+    animation: wobble 0.5s ease;
+}
+
+@keyframes wobble {
+    0%, 100% { transform: scale(1.02) rotate(0deg); }
+    25% { transform: scale(1.02) rotate(-3deg); }
+    75% { transform: scale(1.02) rotate(3deg); }
+}
+
+.no-button.shake {
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+}
+
+.floating-heart {
+    position: fixed;
+    font-size: 2rem;
+    opacity: 0.6;
+    pointer-events: none;
+    animation: floatHeart 8s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes floatHeart {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(-30px) rotate(10deg);
+        opacity: 0.8;
+    }
+}
+
+#hearts-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.gif_container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+    margin-top: 20px;
+    box-shadow: 0 8px 30px rgba(255, 107, 157, 0.2);
+    animation: fadeIn 0.5s ease 0.8s both;
+}
+
+.page-transition {
+    animation: pageOut 0.3s ease forwards;
+}
+
+@keyframes pageOut {
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 24px;
+        margin: 16px;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .yes-button, .no-button {
+        width: 100%;
+        margin: 0;
+        padding: 16px 24px;
+    }
+}
