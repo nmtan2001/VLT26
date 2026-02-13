@@ -1,2 +1,0 @@
-command: python $program/eval.py $input $output
-description: MTTN challenge of sentimental classification of texts scoring program
